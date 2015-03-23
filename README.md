@@ -1,10 +1,9 @@
-# Blurblr
+# Blurblr Readme
 
-An ROR microblogging social media site with a funny name.
+A microblogging site with a funny sounding name https://blurblr.herokuapp.com
+Developed in ROR using Ruby 2.1.5 via http://railsinstaller.org.
 
-Things to cover in this readme:
-
-* Ruby version
+Possible things to cover in this readme:
 
 * System dependencies
 
