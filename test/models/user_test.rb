@@ -54,4 +54,12 @@ class UserTest < ActiveSupport::TestCase
     assert_respond_to @user, :blurbs, "Blurbs field is missing"
     assert_includes @user.blurbs, blurbs(:one), "Blurb :one is not assigned"
   end
+
+  test "should destroy dependent blurbs" do
+    blurbs = @user.blurbs
+    @user.destroy
+    blurbs.each do |blurb|
+      assert_nil Blurb.find_by_id(blurb.id)
+    end
+  end
 end
