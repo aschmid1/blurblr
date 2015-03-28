@@ -32,4 +32,9 @@ class BlurbTest < ActiveSupport::TestCase
     @blurb.content = "  "
     assert @blurb.invalid?, "Accepted whitespace content"
   end
+
+  test "should have a user" do
+    assert_respond_to @blurb, :user, "User field is missing"
+    assert_equal users(:one), @blurb.user, "User :one is not assigned"
+  end
 end
