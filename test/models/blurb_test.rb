@@ -37,4 +37,8 @@ class BlurbTest < ActiveSupport::TestCase
     assert_respond_to @blurb, :user, "User field is missing"
     assert_equal users(:one), @blurb.user, "User :one is not assigned"
   end
+
+  test "should be ordered by newest first" do
+    assert Blurb.all.each_cons(2).all? { |i,j| i.created_at >= j.created_at }
+  end
 end

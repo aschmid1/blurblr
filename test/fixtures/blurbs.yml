@@ -13,8 +13,12 @@
 
 one:
   user: one
-  content: Blurb Content
+  content: First blurb content
 
 two:
   user: two
-  content: MyText
+  content: Second blurb content
+
+three:
+  user: one
+  content: Third blurb content

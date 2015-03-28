@@ -17,9 +17,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "emails should be unique (case-insensitive)" do
-    @new_user = users(:two)
-    @new_user.email = @user.email.upcase
-    assert @new_user.invalid?
+    new_user = users(:two)
+    new_user.email = @user.email.upcase
+    assert new_user.invalid?
   end
 
   test "emails should save as lower case" do
