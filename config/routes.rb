@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :blurbs
   resources :users
 
   controller :static_pages do

@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: blurbs
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  content    :text             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  content: First blurb content
+
+two:
+  user: two
+  content: Second blurb content
+
+three:
+  user: one
+  content: Third blurb content
