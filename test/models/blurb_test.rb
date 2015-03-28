@@ -36,6 +36,9 @@ class BlurbTest < ActiveSupport::TestCase
   test "should have a user" do
     assert_respond_to @blurb, :user, "User field is missing"
     assert_equal users(:one), @blurb.user, "User :one is not assigned"
+
+    @blurb.user = nil
+    assert @blurb.invalid?, "Blurb allowed to have no user"
   end
 
   test "should be ordered by newest first" do
