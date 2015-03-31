@@ -14,16 +14,14 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.0.3'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.5.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
-gem 'annotate', '~> 2.6.8'
 
 # User authentication plugin
 gem 'authlogic', '~> 3.4.5'
@@ -39,10 +37,11 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+  gem 'annotate', '~> 2.6.8'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
@@ -50,7 +49,7 @@ end
 # Heroku dependencies including Postgre as the production database
 group :production do
   gem 'pg'
-  gem 'rails_12factor'
+  gem 'rails_12factor', '~> 0.0.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
