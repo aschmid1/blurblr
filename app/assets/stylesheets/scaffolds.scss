@@ -26,20 +26,12 @@ footer {
 
 /* Form styles */
 
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
-}
-
 #notice {
   color: green;
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  @extend .has-error;
 }
 
 #error_explanation {
