@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   before_save { self.email.downcase! }
+
+  def to_s
+    email
+  end
 end
