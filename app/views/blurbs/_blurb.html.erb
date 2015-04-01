@@ -1,0 +1,16 @@
+<article class="blurb">
+  <header class="blurb-header">
+    <span class="fullname">
+      <%= link_to blurb.user, blurb.user %>
+    </span>
+    <span class="timestamp">
+      - <%= time_ago_in_words(blurb.created_at) %> ago.
+    </span>
+  </header>
+  <p class="content"><%= blurb.content %></p>
+  <footer class="blurb-footer">
+    <%= link_to 'Show', blurb %>
+    <%= link_to 'Edit', edit_blurb_path(blurb) %>
+    <%= link_to 'Destroy', blurb, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </footer>
+</article>

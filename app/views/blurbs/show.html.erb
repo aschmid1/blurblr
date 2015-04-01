@@ -1,14 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @blurb.user %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @blurb.content %>
-</p>
+<%= render @blurb %>
 
 <%= link_to 'Edit', edit_blurb_path(@blurb) %> |
 <%= link_to 'Back', blurbs_path %>

@@ -1,3 +1,23 @@
 // Place all the styles related to the Blurbs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.blurb {
+  padding: 1em;
+  border: 1px solid $gray-lighter;
+  margin-top: -1px;
+
+  .blurb-header a {
+    color: inherit;
+  }
+  .fullname {
+    font-weight: bold;
+  }
+  .timestamp {
+    color: $gray-light;
+  }
+  .content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
