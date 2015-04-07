@@ -10,14 +10,13 @@
     </div>
     <nav class="collapse navbar-collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Feed", root_path %></li>
         <li><%= link_to "Blurbs", "#" %></li>
         <li><%= link_to "Users", users_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Profile", "#" %></li>
         <li><%= link_to "Settings", "#" %></li>
-        <li><%= link_to "Log out", "#", method: "delete" %></li>
+        <li><%= link_to "Log out", logout_path, method: "delete" %></li>
       </ul>
     </nav>
   </div><!-- /.container -->

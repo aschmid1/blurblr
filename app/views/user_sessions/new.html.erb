@@ -1,0 +1,38 @@
+<div class="col-md-3">
+  <div class="well sidebar-nav">
+    <h3>Sidebar</h3>
+    <ul class="nav nav-list">
+      <li class="nav-header">Sidebar</li>
+      <li><%= link_to "Link1", "/path1"  %></li>
+      <li><%= link_to "Link2", "/path2"  %></li>
+      <li><%= link_to "Link3", "/path3"  %></li>
+    </ul>
+  </div><!--/.well -->
+</div>
+<div class="col-md-6">
+  <h1>Login</h1>
+
+  <%= form_for :login, html: {role: 'form'} do |f| %>
+    <% if flash[:alert] %>
+      <div id="error_explanation">
+        <h2>Login Failure:</h2>
+        <ul>
+          <li><%= flash[:alert] %></li>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :email, class: 'control-label' %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, class: 'control-label' %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Login", class:'btn btn-primary' %>
+    </div>
+  <% end %>
+
+</div>

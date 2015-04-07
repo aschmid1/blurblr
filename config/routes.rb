@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  controller :user_sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
   resources :blurbs
   resources :users
 
   controller :static_pages do
-    get :home
     get :about
   end
 
