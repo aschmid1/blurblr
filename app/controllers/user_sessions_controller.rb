@@ -27,9 +27,11 @@ class UserSessionsController < ApplicationController
   private
     def login(user)
       session[:user_id] = user.id
+      current_user = user
     end
 
     def logout
-      session[:user_id] = nil
+      session.delete(:user_id)
+      current_user = nil
     end
 end
