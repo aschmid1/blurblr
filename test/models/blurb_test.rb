@@ -27,6 +27,8 @@ class BlurbTest < ActiveSupport::TestCase
   end
 
   test "should reject blank content" do
+    @blurb.content = nil
+    assert @blurb.invalid?, "Accepted nil content"
     @blurb.content = ""
     assert @blurb.invalid?, "Accepted empty content"
     @blurb.content = "  "

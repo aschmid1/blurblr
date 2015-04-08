@@ -16,13 +16,22 @@ class UserTest < ActiveSupport::TestCase
     @user = users(:one)
   end
 
-  test "emails should be unique (case-insensitive)" do
+  test "should require an email" do
+    @user.email = nil
+    assert @user.invalid?, "Accepted nil email"
+    @user.email = ""
+    assert @user.invalid?, "Accepted empty email"
+    @user.email = " "
+    assert @user.invalid?, "Accepted whitespace email"
+  end
+
+  test "should have a unique email (case-insensitive)" do
     new_user = users(:two)
     new_user.email = @user.email.upcase
     assert new_user.invalid?
   end
 
-  test "emails should save as lower case" do
+  test "should save email as lower case" do
     lower_case_email = @user.email.downcase
     @user.email.upcase!
     @user.save
@@ -33,25 +42,50 @@ class UserTest < ActiveSupport::TestCase
     valid_emails = %w[foo@bar.com user.foo@bar.com foo+extra@bar.ca]
     valid_emails.each do |email|
       @user.email = email
-      assert @user.valid?
+      assert @user.valid?, "Rejected #{email} as an email"
     end
   end
 
   test "should reject invalid emails" do
-    invalid_emails = %w[foo@bar. foo@bar,com foo@bar.c@m]
+    invalid_emails = %w[foo@bar. foo@bar,com foo@bar.c@m has\ space@example.com]
     invalid_emails.each do |email|
       @user.email = email
-      assert @user.invalid?
+      assert @user.invalid?, "Accepted #{email} as an email"
     end
   end
 
-  test "should require password" do
-    @user.password_digest = ''
-    assert @user.invalid?
+  test "should require a password" do
+    @user.password_digest = nil
+    assert @user.invalid?, "Accepted nil password"
+    @user.password_digest = ""
+    assert @user.invalid?, "Accepted empty password"
+    @user.password_digest = " "
+    assert @user.invalid?, "Accepted whitespace password"
+  end
+
+  test "should have a profile" do
+    assert_respond_to @user, :user_profile, "user_profile field is missing"
+    assert_equal user_profiles(:one), @user.user_profile, "user_profile :one is not assigned"
+
+    @user.user_profile = nil
+    assert @user.invalid?, "User allowed to have no profile"
+  end
+
+  test "should generate a valid profile upon creation" do
+    new_user = User.create!(email: "new@example.com", password_digest: @user.password_digest)
+    new_profile = new_user.user_profile
+    assert_not_nil new_profile, "Profile not created"
+    assert new_profile.valid?, "Profile state is invalid"
+  end
+
+  test "should destroy dependent profile" do
+    profile_id = @user.user_profile.id
+    @user.destroy
+    assert_nil UserProfile.find_by_id(profile_id)
   end
 
   test "should have blurbs" do
-    assert_respond_to @user, :blurbs, "Blurbs field is missing"
+    assert_respond_to @user, :blurbs, "blurbs field is missing"
     assert_includes @user.blurbs, blurbs(:one), "Blurb :one is not assigned"
   end
 
