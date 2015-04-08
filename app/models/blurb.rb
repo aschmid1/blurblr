@@ -11,9 +11,9 @@
 
 class Blurb < ActiveRecord::Base
   belongs_to :user
+  validates_presence_of :user
 
   validates :content, presence: true, length: { maximum: 140 }
-  validates :user_id, presence: true
 
   default_scope { order(:created_at).reverse_order }
 end

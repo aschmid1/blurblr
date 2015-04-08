@@ -64,24 +64,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should have a profile" do
-    assert_respond_to @user, :user_profile, "user_profile field is missing"
-    assert_equal user_profiles(:one), @user.user_profile, "user_profile :one is not assigned"
+    assert_respond_to @user, :profile, "Profile field is missing"
+    assert_equal user_profiles(:one), @user.profile, "Profile :one is not assigned"
 
-    @user.user_profile = nil
+    @user.profile = nil
     assert @user.invalid?, "User allowed to have no profile"
   end
 
-  test "should generate a valid profile upon creation" do
-    new_user = User.create!(email: "new@example.com", password_digest: @user.password_digest)
-    new_profile = new_user.user_profile
-    assert_not_nil new_profile, "Profile not created"
-    assert new_profile.valid?, "Profile state is invalid"
-  end
-
   test "should destroy dependent profile" do
-    profile_id = @user.user_profile.id
+    profile_id = @user.profile.user_id
     @user.destroy
-    assert_nil UserProfile.find_by_id(profile_id)
+    assert_nil UserProfile.find_by_user_id(profile_id)
   end
 
   test "should have blurbs" do

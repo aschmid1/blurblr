@@ -74,4 +74,9 @@ class UserProfileTest < ActiveSupport::TestCase
     @profile.user = nil
     assert @profile.invalid?, "Profile allowed to have no user"
   end
+
+  test "id should match user_id" do
+    assert_equal 'user_id', @profile.class.primary_key
+    assert_equal @profile.user.id, @profile.id
+  end
 end
