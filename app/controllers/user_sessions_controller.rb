@@ -2,6 +2,7 @@ class UserSessionsController < ApplicationController
 
   # GET /login
   def new
+    @user = User.new
   end
 
   # POST /login

@@ -1,4 +1,4 @@
-/* Footer styles */
+/* Layout styles */
 
 #layout-footer {
   margin-top: 45px;
@@ -24,7 +24,7 @@
   }
 }
 
-/* Form styles */
+/* Message styles */
 
 #notice {
   color: green;
@@ -55,4 +55,10 @@
     font-size: 12px;
     list-style: square;
   }
+}
+
+.tab-content {
+  padding: 1em;
+  margin-top: -1px;
+  border: 1px solid $gray-lighter;
 }
