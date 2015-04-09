@@ -13,7 +13,7 @@
 #
 
 class UserProfile < ActiveRecord::Base
-  VALID_USERNAME_REGEX = /\A\w+\z/i
+  VALID_USERNAME_REGEX = /\A\w+\z/
 
   self.primary_key = :user_id
 

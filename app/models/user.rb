@@ -22,9 +22,28 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
 
+  before_validation :create_default_profile, on: :create
   before_save { email.downcase! }
 
   def to_s
     profile.fullname || profile.username
   end
+
+  protected
+    def create_default_profile
+      unless profile && profile.valid?
+        default_username = email.split("@").first
+                                .gsub(/\W/, "_")
+                                .truncate(15, omission: "")
+
+        prefix = default_username
+        counter = 1
+        until UserProfile.find_by_username(default_username).nil?
+          default_username = (prefix + counter.to_s).truncate(15, omission: counter.to_s)
+          counter += 1
+        end
+
+        build_profile(username: default_username)
+      end
+    end
 end
