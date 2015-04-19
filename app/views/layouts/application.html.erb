@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Blurblr</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -9,11 +9,16 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
-<body class="<%= controller.controller_name %>-page">
+<body>
   <%= render 'layouts/header' %>
   <section class="container">
-    <!--%= bootstrap_flash %-->
-    <%= yield %>
+    <div class="col-md-3">
+      <%= yield :sidebar %>
+    </div>
+    <div class="col-md-6">
+      <!--%= flash %-->
+      <%= yield %>
+    </div>
   </section> <!-- /container -->
   <%= render 'layouts/footer' %>
   <%= debug(params) if Rails.env.development? %>
