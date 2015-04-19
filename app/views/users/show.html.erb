@@ -1,10 +1,9 @@
 <% content_for :sidebar do %>
 <div class="well">
+  <%= gravatar_for @user, size: 200 %>
   <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
+    <%= @user %>
   </p>
-
   <%= link_to 'Edit', edit_user_path(@user) %> |
   <%= link_to 'Back', users_path %>
 </div>

@@ -7,8 +7,17 @@
   border: 1px solid $gray-lighter;
   margin-top: -1px;
 
-  .blurb-header a {
-    color: inherit;
+  header {
+    a {
+      color: inherit;
+    }
+  }
+  .blurb-container {
+    padding-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-left: -60px;
   }
   .fullname {
     font-weight: bold;
