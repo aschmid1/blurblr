@@ -25,8 +25,12 @@ class User < ActiveRecord::Base
   before_validation :create_default_profile, on: :create
   before_save { email.downcase! }
 
+  def username
+    profile.username
+  end
+
   def to_s
-    profile.fullname || profile.username
+    profile.fullname || username
   end
 
   protected

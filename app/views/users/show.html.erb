@@ -1,11 +1,18 @@
 <% content_for :sidebar do %>
-<div class="well">
+<div class="profile well">
   <%= gravatar_for @user, size: 200 %>
-  <p>
-    <%= @user %>
-  </p>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-  <%= link_to 'Back', users_path %>
+  <h1 class="fullname"><%= link_to @user, @user %></h1>
+  <h2 class="username">@<%= link_to @user.username, @user %></h2>
+  <p class="bio"><%= @user.profile.bio %></p>
+
+  <div class="website">
+    <% if @user.profile.website %>
+    Site: <%= link_to @user.profile.website %>
+    <% end %>
+  </div>
+  <div class="email">Email: <%= @user.email %></div>
+
+  <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-default' %>
 </div>
 <% end %>
 

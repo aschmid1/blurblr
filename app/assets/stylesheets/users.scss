@@ -1,3 +1,28 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile {
+  .gravatar {
+    display: block;
+    margin: auto;
+  }
+  .fullname {
+    font-size: 24px;
+    margin-bottom: 0px;
+    a {
+      color: inherit;
+    }
+  }
+  .username {
+    color: $gray-light;
+    font-size: 14px;
+    margin-top: 0px;
+    a {
+      color: inherit;
+    }
+  }
+  .email {
+    margin-bottom: 20px;
+  }
+}
