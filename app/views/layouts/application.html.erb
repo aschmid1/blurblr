@@ -10,17 +10,25 @@
   <![endif]-->
 </head>
 <body>
-  <%= render 'layouts/header' %>
-  <section class="container">
-    <div class="col-md-3">
-      <%= yield :sidebar %>
+  <header id="layout-header">
+    <%= render 'layouts/header' %>
+  </header>
+  <div class="container">
+    <div class="row">
+      <aside id="layout-sidebar" class="col-md-3">
+        <%= yield :sidebar %>
+      </aside>
+      <section id="layout-content" class="col-md-6">
+        <!--%= flash %-->
+        <%= yield %>
+      </section>
     </div>
-    <div class="col-md-6">
-      <!--%= flash %-->
-      <%= yield %>
+    <div class="row">
+      <footer id="layout-footer">
+        <%= render 'layouts/footer' %>
+      </footer>
     </div>
-  </section> <!-- /container -->
-  <%= render 'layouts/footer' %>
+  </div><!-- /container -->
   <%= debug(params) if Rails.env.development? %>
 </body>
 </html>

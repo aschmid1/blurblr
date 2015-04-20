@@ -1,4 +1,4 @@
-<header class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -8,7 +8,7 @@
       </button>
       <%= link_to "Blurblr", root_path, class: "navbar-brand" %>
     </div>
-    <nav class="collapse navbar-collapse navbar-responsive-collapse">
+    <div class="collapse navbar-collapse navbar-responsive-collapse">
       <% if logged_in? %>
       <ul class="nav navbar-nav navbar-left">
         <li><%= link_to "My Blurbs", "#" %></li>
@@ -32,6 +32,6 @@
         <li><%= link_to "Sign Up", new_user_path %></li>
       </ul>
       <% end %>
-    </nav>
+    </div><!-- /.collapse -->
   </div><!-- /.container -->
-</header>
+</nav>
