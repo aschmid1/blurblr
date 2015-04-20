@@ -1,0 +1,24 @@
+<article class="user">
+  <aside class="follow-bar">
+    <button class="btn btn-default">
+      <span class="glyphicon glyphicon-unchecked"></span> Follow
+    </button>
+  </aside>
+  <div class="user-container">
+    <header>
+      <%= link_to gravatar_for(user, size: 50), user %>
+      <span class="fullname">
+        <%= link_to user, user %>
+      </span>
+      <span class="username">
+        <%= link_to "@#{user.username}", user %>
+      </span>
+    </header>
+    <p class="bio"><%= truncate user.profile.bio, length: 140, separator: ' ' %></p>
+    <footer>
+      <%= link_to 'Show', user %>
+      <%= link_to 'Edit', edit_user_path(user) %>
+      <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </footer>
+  </div>
+</article>
