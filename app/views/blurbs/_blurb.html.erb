@@ -5,6 +5,9 @@
       <span class="fullname">
         <%= link_to blurb.user, blurb.user %>
       </span>
+      <span class="username">
+        <%= link_to "@#{blurb.user.username}", blurb.user %>
+      </span>
       <span class="timestamp">
         - <%= time_ago_in_words(blurb.created_at) %> ago.
       </span>
