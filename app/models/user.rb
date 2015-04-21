@@ -29,17 +29,23 @@ class User < ActiveRecord::Base
     profile.username
   end
 
-  def to_s
+  def fullname
     profile.fullname || username
+  end
+
+  def to_s
+    fullname
   end
 
   protected
     def create_default_profile
       unless profile && profile.valid?
+        # extract default username from email address
         default_username = email.split("@").first
                                 .gsub(/\W/, "_")
                                 .truncate(15, omission: "")
 
+        # postfix number to make default username unique
         prefix = default_username
         counter = 1
         until UserProfile.find_by_username(default_username).nil?

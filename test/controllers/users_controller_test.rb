@@ -21,7 +21,12 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: { email: 'new@email.com', password: 'secret', password_confirmation: 'secret' }
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    @user = assigns(:user)
+    assert_redirected_to user_path(@user)
+
+    assert_equal 'new@email.com', @user.email
+    assert @user.authenticate('secret')
+    assert_equal 'new', @user.profile.username
   end
 
   test "should show user" do
@@ -35,8 +40,17 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { email: @user.email, password: 'secret', password_confirmation: 'secret' }
-    assert_redirected_to user_path(assigns(:user))
+    patch :update, id: @user, user: { email: 'joshdoe@example.com', password: 'new_secret', password_confirmation: 'new_secret' },
+                              user_profile: { username: 'joshdoe', fullname: 'Josh Doe', bio: 'I am the 1st user.', website: 'josh.com' }
+    @user = assigns(:user)
+    assert_redirected_to user_path(@user)
+
+    assert_equal 'joshdoe@example.com', @user.email
+    assert @user.authenticate('new_secret')
+    assert_equal 'joshdoe', @user.profile.username
+    assert_equal 'Josh Doe', @user.profile.fullname
+    assert_equal 'I am the 1st user.', @user.profile.bio
+    assert_equal 'josh.com', @user.profile.website
   end
 
   test "should destroy user" do
@@ -45,5 +59,6 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to users_path
+    assert_nil User.find_by_id(@user.id)
   end
 end
