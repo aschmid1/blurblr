@@ -1,0 +1,15 @@
+<div class="user-profile">
+  <%= gravatar_for user_profile.user, size: 200 %>
+
+  <h1 class="fullname"><%= link_to user_profile.fullname, @user %></h1>
+  <h2 class="username"><%= link_to "@#{user_profile.username}", @user %></h2>
+
+  <p class="bio"><%= user_profile.bio %></p>
+
+  <div class="website">
+    <% if user_profile.website %>
+    Site: <%= link_to user_profile.website, user_profile.website %>
+    <% end %>
+  </div>
+  <div class="email">Email: <%= user_profile.user.email %></div>
+</div>
