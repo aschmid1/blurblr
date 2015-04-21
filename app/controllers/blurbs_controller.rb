@@ -28,7 +28,7 @@ class BlurbsController < ApplicationController
 
     respond_to do |format|
       if @blurb.save
-        format.html { redirect_to @blurb, notice: 'Blurb was successfully created.' }
+        format.html { redirect_to :back, notice: 'Blurb was successfully created.' }
         format.json { render :show, status: :created, location: @blurb }
       else
         format.html { render :new }

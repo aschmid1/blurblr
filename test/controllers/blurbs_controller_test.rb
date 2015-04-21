@@ -17,11 +17,13 @@ class BlurbsControllerTest < ActionController::TestCase
   end
 
   test "should create blurb" do
+    request.env["HTTP_REFERER"] = new_blurb_url
+
     assert_difference('Blurb.count') do
       post :create, blurb: { content: @blurb.content, user_id: @blurb.user_id }
     end
 
-    assert_redirected_to blurb_path(assigns(:blurb))
+    assert_redirected_to :back
   end
 
   test "should show blurb" do
