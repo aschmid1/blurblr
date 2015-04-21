@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+<div class="well">
+  <%= render @user.profile %>
+
+  <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-default' %>
+</div>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<%= render 'blurbs/form' %>
+<%= render @user.feed %>

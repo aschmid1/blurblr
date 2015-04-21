@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :feed]
+  before_action :setup_blurb_form, only: [:show, :feed]
 
   # GET /users
   # GET /users.json
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @blurb = Blurb.new(user_id: @user.id)
   end
 
   # GET /users/new
@@ -62,10 +62,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/1/feed
+  def feed
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def setup_blurb_form
+      @blurb = Blurb.new(user_id: @user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

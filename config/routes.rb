@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   end
 
   resources :blurbs
-  resources :users
+  resources :users do
+    get :feed, on: :member
+  end
 
   controller :static_pages do
     get :about

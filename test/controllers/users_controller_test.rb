@@ -62,4 +62,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to users_path
     assert_nil User.find_by_id(@user.id)
   end
+
+  test "should get feed" do
+    get :feed, id: @user
+    assert_response :success
+  end
 end
