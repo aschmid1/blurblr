@@ -15,8 +15,7 @@ class User < ActiveRecord::Base
   has_one :profile, class_name: 'UserProfile', inverse_of: :user, dependent: :destroy
   has_many :blurbs, dependent: :destroy
 
-  validates_presence_of :profile
-
+  validates :profile, presence: true
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -25,12 +24,16 @@ class User < ActiveRecord::Base
   before_validation :create_default_profile, on: :create
   before_save { email.downcase! }
 
+  def feed
+    Blurb.where("user_id = ?", id)
+  end
+
   def username
     profile.username
   end
 
   def fullname
-    profile.fullname || username
+    profile.fullname
   end
 
   def to_s

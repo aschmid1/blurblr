@@ -13,16 +13,20 @@
 #
 
 class UserProfile < ActiveRecord::Base
-  VALID_USERNAME_REGEX = /\A\w+\z/
-
   self.primary_key = :user_id
 
-  belongs_to :user, inverse_of: :profile
-  validates_presence_of :user
+  VALID_USERNAME_REGEX = /\A\w+\z/
 
+  belongs_to :user, inverse_of: :profile
+
+  validates :user, presence: true
   validates :username, presence: true, length: { maximum: 15 },
                        format: { with: VALID_USERNAME_REGEX },
                        uniqueness: { case_sensitive: false }
 
   before_save { username.downcase! }
+
+  def fullname
+    self[:fullname] || username
+  end
 end
