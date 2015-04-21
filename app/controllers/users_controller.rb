@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @blurb = Blurb.new(user_id: @user.id)
   end
 
   # GET /users/new

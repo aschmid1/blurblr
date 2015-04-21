@@ -31,6 +31,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should show user" do
     get :show, id: @user
+    assert assigns(:blurb)
     assert_response :success
   end
 
