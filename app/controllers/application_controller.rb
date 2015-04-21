@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
       session[:return_to] = request.original_url if request.get?
     end
 
+    def store_referer
+      session[:return_to] = request.env['HTTP_REFERER']
+    end
+
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session.delete(:return_to)
