@@ -37,8 +37,7 @@
 
 .user-profile {
   .gravatar {
-    display: block;
-    margin: auto;
+    @extend .center-block;
   }
   .fullname {
     font-size: 24px;
