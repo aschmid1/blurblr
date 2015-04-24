@@ -60,7 +60,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to users_path
-    assert_nil User.find_by_id(@user.id)
+    assert_nil User.find_by(id: @user.id)
   end
 
   test "should get feed" do

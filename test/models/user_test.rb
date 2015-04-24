@@ -73,13 +73,13 @@ class UserTest < ActiveSupport::TestCase
 
   test "should generate a unique default profile upon creation" do
     new_user = User.create!(email: "new.name+1@example.com", password_digest: @user.password_digest)
-    new_profile = UserProfile.find_by_user_id(new_user.id)
+    new_profile = UserProfile.find_by(user_id: new_user.id)
 
     assert_not_nil new_profile, "Profile not created"
     assert_equal "new_name_1", new_profile.username
 
     new_user = User.create!(email: "new.name+1@other.com", password_digest: @user.password_digest)
-    new_profile = UserProfile.find_by_user_id(new_user.id)
+    new_profile = UserProfile.find_by(user_id: new_user.id)
 
     assert_not_nil new_profile, "Profile 2 not created"
     assert_equal "new_name_11", new_profile.username
@@ -87,13 +87,13 @@ class UserTest < ActiveSupport::TestCase
 
   test "should generate a short default profile upon creation" do
     new_user = User.create!(email: "a"*16 + "@example.com", password_digest: @user.password_digest)
-    new_profile = UserProfile.find_by_user_id(new_user.id)
+    new_profile = UserProfile.find_by(user_id: new_user.id)
 
     assert_not_nil new_profile, "Profile not created"
     assert_equal "a"*15, new_profile.username
 
     new_user = User.create!(email: "a"*16 + "@other.com", password_digest: @user.password_digest)
-    new_profile = UserProfile.find_by_user_id(new_user.id)
+    new_profile = UserProfile.find_by(user_id: new_user.id)
 
     assert_not_nil new_profile, "Profile 2 not created"
     assert_equal "a"*14 + "1", new_profile.username
@@ -102,7 +102,7 @@ class UserTest < ActiveSupport::TestCase
   test "should destroy dependent profile" do
     profile_id = @user.profile.user_id
     @user.destroy
-    assert_nil UserProfile.find_by_user_id(profile_id)
+    assert_nil UserProfile.find_by(user_id: profile_id)
   end
 
   test "should have blurbs" do
@@ -114,7 +114,7 @@ class UserTest < ActiveSupport::TestCase
     blurbs = @user.blurbs
     @user.destroy
     blurbs.each do |blurb|
-      assert_nil Blurb.find_by_id(blurb.id)
+      assert_nil Blurb.find_by(id: blurb.id)
     end
   end
 end

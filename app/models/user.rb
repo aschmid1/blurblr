@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
         # postfix number to make default username unique
         prefix = default_username
         counter = 1
-        until UserProfile.find_by_username(default_username).nil?
+        until UserProfile.find_by(username: default_username).nil?
           default_username = (prefix + counter.to_s).truncate(15, omission: counter.to_s)
           counter += 1
         end
