@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
   has_one :profile, class_name: 'UserProfile', inverse_of: :user, dependent: :destroy
   has_many :blurbs, dependent: :destroy
 
+  has_many :user_followings, class_name: 'UserFollowing', foreign_key: 'follower_id', dependent: :destroy
+  has_many :user_followers, class_name: 'UserFollowing', foreign_key: 'following_id', dependent: :destroy
+  has_many :following, through: :user_followings
+  has_many :followers, through: :user_followers
+
   validates :profile, presence: true
   validates :email, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
@@ -23,6 +28,10 @@ class User < ActiveRecord::Base
 
   before_validation :create_default_profile, on: :create
   before_save { email.downcase! }
+
+  def follow(user)
+    user_followings.create(following_id: user.id)
+  end
 
   def feed
     Blurb.where("user_id = ?", id)

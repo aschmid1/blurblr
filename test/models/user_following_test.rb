@@ -12,7 +12,38 @@
 require 'test_helper'
 
 class UserFollowingTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @follower = users(:one)
+    @followed = users(:two)
+    @relation = user_followings(:one)
+  end
+
+  test "follower should be following followed" do
+    assert_includes @follower.following, @followed
+  end
+
+  test "followed should be followed by follower" do
+    assert_includes @followed.followers, @follower
+  end
+
+  test "should create a new following association" do
+    @followed.follow(@follower)
+    assert_includes @followed.following, @follower
+  end
+
+  test "should not allow following of self" do
+    @follower.follow(@follower)
+    assert @follower.invalid?
+    assert_not_includes @follower.following, @follower
+  end
+
+  test "should destroy dependent following relations" do
+    @follower.destroy
+    assert_nil UserFollowing.find_by(id: @relation.id)
+  end
+
+  test "should destroy dependent follower relations" do
+    @followed.destroy
+    assert_nil UserFollowing.find_by(id: @relation.id)
+  end
 end
