@@ -33,8 +33,12 @@ class User < ActiveRecord::Base
     user_followings.create(following_id: user.id)
   end
 
+  def is_following?(user)
+    user_followings.exists?(following_id: user.id)
+  end
+
   def feed
-    Blurb.where("user_id = ?", id)
+    Blurb.where(user_id: id)
   end
 
   def username

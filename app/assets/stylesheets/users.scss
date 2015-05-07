@@ -32,6 +32,11 @@
   }
   .follow-bar {
     float: right;
+
+    .btn-text {
+      display: inline-block;
+      min-width: 60px;
+    }
   }
 }
 

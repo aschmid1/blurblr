@@ -20,6 +20,7 @@ class UserFollowingTest < ActiveSupport::TestCase
 
   test "follower should be following followed" do
     assert_includes @follower.following, @followed
+    assert @follower.is_following?(@followed)
   end
 
   test "followed should be followed by follower" do

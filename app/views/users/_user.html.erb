@@ -1,8 +1,16 @@
 <article class="user">
   <aside class="follow-bar">
-    <button class="btn btn-default">
-      <span class="glyphicon glyphicon-unchecked"></span> Follow
+    <% if logged_in? and current_user.is_following?(user) %>
+    <button class="btn btn-success">
+      <span class="glyphicon glyphicon-check"></span>
+      <span class="btn-text">Following</span>
     </button>
+    <% else %>
+    <button class="btn btn-default">
+      <span class="glyphicon glyphicon-unchecked"></span>
+      <span class="btn-text">Follow</span>
+    </button>
+    <% end %>
   </aside>
   <div class="user-container">
     <header>
