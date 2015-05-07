@@ -7,7 +7,7 @@
   <p class="bio"><%= user_profile.bio %></p>
 
   <div class="website">
-    <% if user_profile.website %>
+    <% if user_profile.website? %>
     Site: <%= link_to user_profile.website, user_profile.website %>
     <% end %>
   </div>
