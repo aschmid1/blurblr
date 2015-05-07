@@ -1,32 +1,29 @@
-<div class="row">
-  <div class="col-sm-3">
-    <div class="well sidebar-nav">
-      <h3>Sidebar</h3>
-      <ul class="nav nav-list">
-        <li class="nav-header">Sidebar</li>
-        <li><%= link_to "Link1", "/path1"  %></li>
-        <li><%= link_to "Link2", "/path2"  %></li>
-        <li><%= link_to "Link3", "/path3"  %></li>
-      </ul>
-    </div><!--/.well -->
+<% content_for :sidebar do %>
+<div class="well">
+  <h3>Sidebar</h3>
+  <ul class="nav nav-list">
+    <li class="nav-header">Sidebar</li>
+    <li><%= link_to "Link1", "/path1"  %></li>
+    <li><%= link_to "Link2", "/path2"  %></li>
+    <li><%= link_to "Link3", "/path3"  %></li>
+  </ul>
+</div>
+<% end %>
+
+<h1>Welcome to Blurblr</h1>
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#login" data-toggle="tab">Login</a>
+  </li>
+  <li>
+    <a href="#signup" data-toggle="tab">Sign Up</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="login">
+    <%= render 'form' %>
   </div>
-  <div class="col-sm-6">
-    <h1>Welcome to Blurblr</h1>
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#login" data-toggle="tab">Login</a>
-      </li>
-      <li>
-        <a href="#signup" data-toggle="tab">Sign Up</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="login">
-        <%= render 'form' %>
-      </div>
-      <div class="tab-pane" id="signup">
-        <%= render 'users/form' %>
-      </div>
-    </div>
+  <div class="tab-pane" id="signup">
+    <%= render 'users/form' %>
   </div>
-</div><!--/.row -->
+</div>
