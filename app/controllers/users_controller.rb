@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :feed]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :followers, :feed]
   before_action :setup_blurb_form, only: [:show, :feed]
 
   # GET /users
@@ -60,6 +60,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # GET /users/1/followers
+  def followers
   end
 
   # GET /users/1/feed

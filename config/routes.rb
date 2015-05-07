@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   controller :user_sessions do
     get 'login' => :new
     post 'login' => :create
@@ -6,8 +7,13 @@ Rails.application.routes.draw do
   end
 
   resources :blurbs
+
   resources :users do
-    get :feed, on: :member
+    resources :user_followings, path: :following, as: :followings, only: [:index, :create, :destroy]
+    member do
+      get :followers
+      get :feed
+    end
   end
 
   controller :static_pages do
