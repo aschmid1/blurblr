@@ -28,12 +28,12 @@ class UserFollowingTest < ActiveSupport::TestCase
   end
 
   test "should create a new following association" do
-    @followed.follow(@follower)
+    @followed.follow(@follower.id)
     assert_includes @followed.following, @follower
   end
 
   test "should not allow following of self" do
-    @follower.follow(@follower)
+    @follower.follow(@follower.id)
     assert @follower.invalid?
     assert_not_includes @follower.following, @follower
   end

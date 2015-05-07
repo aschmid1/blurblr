@@ -29,8 +29,8 @@ class User < ActiveRecord::Base
   before_validation :create_default_profile, on: :create
   before_save { email.downcase! }
 
-  def follow(user)
-    user_followings.create(following_id: user.id)
+  def follow(user_id)
+    user_followings.create(following_id: user_id)
   end
 
   def is_following?(user)
