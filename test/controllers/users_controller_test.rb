@@ -63,6 +63,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_nil User.find_by(id: @user.id)
   end
 
+  test "should get followers" do
+    get :followers, id: @user
+    assert_response :success
+  end
+
   test "should get feed" do
     get :feed, id: @user
     assert_response :success
